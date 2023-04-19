@@ -1,6 +1,5 @@
 # git学习
-
-![git常用命令](C:\Users\卫清霜\Desktop\git常用命令.jpeg)
+![image-20230418200700390](https://github.com/sidany1/Gits/blob/master/%E5%9B%BE%E5%BA%93/image-20230418200700390.png)
 
 ## 新建
 
