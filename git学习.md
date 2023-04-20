@@ -10,7 +10,7 @@
 
 如果显示Not a git repository,则需要init初始化
 
-![](D:\卫清霜\文档\Gits\图库\image-20230418200744901.png)
+![image-20230418200744901.png](D:\卫清霜\文档\Gits\图库\image-20230418200744901.png)
 
 ## status查看
 
