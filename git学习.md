@@ -5,7 +5,7 @@
 
 在进行任何git操作之前，应该cd切换到 git仓库目录（.git所在处）
 
-![image-20230418200700390](C:\Users\卫清霜\AppData\Roaming\Typora\typora-user-images\image-20230418200700390.png)
+![image-20230418200700390](https://github.com/sidany1/Gits/blob/master/%E5%9B%BE%E5%BA%93/image-20230418200744901.png)
 
 ## init
 
