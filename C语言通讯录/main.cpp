@@ -16,7 +16,7 @@ int main() {
 	char** name;
 	char** tele_num;
 	int len = 4;
-	const int Twidth = 13, Nwidth = 15;
+	const int Twidth = 12, Nwidth = 15;
 	name = (char**)malloc(sizeof(char*) * len);
 	tele_num = (char**)malloc(sizeof(char*) * len);
 	for (int i = 0; i < len; i++) {//二维指针行列初始化
@@ -30,6 +30,8 @@ int main() {
 	char PopName[Nwidth];//3.删除姓名
 	int numBegin, numEnd;//4.打印区间
 	char FindName[Nwidth];//5.查找姓名
+	memset(PopName, 0, sizeof(PopName));
+	memset(FindName, 0, sizeof(FindName));
 
 	do{
 
@@ -41,7 +43,7 @@ int main() {
 -\t3.删除\t\t-\n\
 -\t4.打印通讯录\t-\n\
 -\t5.查找\t\t-\n\
--\t6.插入文件\t-\n\
+-\t6.同步文件\t-\n\
 -\t7.退出\t\t-\n");
 	printf("-------------------------\n");
 
@@ -145,7 +147,7 @@ int main() {
 
 		printf("请输入您要查找的姓名：\n");
 		scanf_s("%s", FindName,Nwidth);
-		PhoneListFind(pl, FindName,Nwidth);
+		PhoneListFind(pl, FindName);
 		break;
 
 

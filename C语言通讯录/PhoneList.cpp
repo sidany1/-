@@ -1,7 +1,6 @@
 #include"PhoneList.h"
 #include<stdio.h>
-#include<string.h>
-#include<stdlib.h>
+
 
 void PhoneListInit(PL* pl) {
 	memset(pl->Name, 0, sizeof(pl->Name));
@@ -22,13 +21,14 @@ void PhoneListPop(PL* pl,char PopName[]) {
 
 	int num=0;
 	do {
-		if (PopName == pl->Name[num]) {
+		if ( strcmp(PopName, pl->Name[num])== 0) {
 			goto out;
 		}
 		num++;
 	} while (num<pl->Size );
-	printf("查询失败\n");
-	return ;
+		printf("查询失败\n");
+		return ;
+
 	out:
 	for (int i = num; i < pl->Size; i++) {
 		strcpy_s(pl->Name[i - 1],pl->Name[i]);
@@ -36,6 +36,8 @@ void PhoneListPop(PL* pl,char PopName[]) {
 	}
 		
 		pl->Size--;
+
+
 }//删除
 
 void PhoneListPrintf(PL* pl, int numBegin, int numEnd) {
@@ -66,21 +68,15 @@ void PhoneListPrintf(PL* pl, int numBegin, int numEnd) {
 
 
 
-void PhoneListFind(PL*pl,char FindName[],int Nwidth) {
-	int num = 0;
-	for (num = 0;num<pl->Size ; num++) {//C语言中数组与数组之间是无法直接判断相等的
-		for (int i = 0; i < Nwidth; i++) {
-			if (FindName[i] != pl->Name[num][i]) 
-				break;
-			
-			if (i ==(Nwidth - 1)) 
-				goto out;
-			
-		}
+void PhoneListFind(PL*pl,char FindName[]) {
 
-	}
-	printf("查询失败\n");
-	return;
+	int num = 0;
+	do {
+		if (strcmp(FindName, pl->Name[num]) == 0) {
+			goto out;
+		}
+		num++;
+	} while (num < pl->Size);
 out:
 	printf("%s\t", pl->Name[num]);
 	printf("%s\n", pl->TeleNum[num]);
@@ -115,7 +111,7 @@ void PhoneListImport(PL* pl){//导入文件数据
 		exit(-1);
 	}
 
-	while (!feof(fp)) {//将姓名与电话分别输入数组
+	while ( !feof(fp) && num < N) {//将姓名与电话分别输入数组
 		char buffer[30] = { 0 };
 		int buff_num = 0;
 		fgets(buffer, 30, fp);
