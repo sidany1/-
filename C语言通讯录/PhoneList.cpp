@@ -43,14 +43,17 @@ void PhoneListPrintf(PL* pl, int numBegin, int numEnd) {
 		printf("数据输入错误\n");
 		return;
 	}
-	else if (numEnd > pl->Size) {
+	if (numEnd > pl->Size) {
 		numEnd = pl->Size;
 	}
-	else if (numBegin < 0||numEnd < 0) {
+	if (numEnd < 0) {
 		printf("begin输入错误\n");
 		return;
 	}
-	else if (numBegin > pl->Size) {
+	if (numBegin < 0) {
+		numBegin = 0;
+	}
+	if (numBegin > pl->Size) {
 		numBegin = pl->Size;
 	}
 
@@ -103,37 +106,32 @@ void PhonrListSaveAs(PL* pl) {
 
 void PhoneListImport(PL* pl){//导入文件数据
 	FILE* fp;
-	int place;//文件总字节数
-	char a;
+
+	int num = 0;
+
 	fopen_s(&fp, "PhoneList.txt", "r");
 	if (fp == NULL) {
 		printf("文件打开失败");
-		return;
+		exit(-1);
 	}
 
-	fseek(fp, 0l, SEEK_END);//把光标移到文件末尾
-	place = ftell(fp);//得到文件总字节数（当前位置）
-	fseek(fp, 0l, SEEK_SET);//移回来
-
-
-
-while (place!=ftell(fp)){//将姓名与电话分别输入数组
+	while (!feof(fp)) {//将姓名与电话分别输入数组
+		char buffer[30] = { 0 };
+		int buff_num = 0;
+		fgets(buffer, 30, fp);
+		int i = 0;
+		if(buffer[buff_num] != '\n'&& buffer[buff_num] != '\0') {
+		while (buffer[buff_num] != '\t') 
+			pl->Name[num][i++] = buffer[buff_num++];
 		
-		for (int j = 0; a = fgetc(fp)!= '\t'; j++) {
-			if (a < 0) {
-				pl->Name[pl->Size][j] = a;
-				pl->Name[pl->Size][j++] = fgetc(fp);
-			}
-			printf("%s",pl->Name[pl->Size]);
-			pl->Name[pl->Size][j] = a;
-			a = fgetc(fp);
-		}
-		a = fgetc(fp);
-		for (int j = 0; a != '\n',a!=EOF; j++) {
-			pl->TeleNum[pl->Size][j] = a;
-			a = fgetc(fp);
-		}
+		buff_num++;
+		i = 0;
+		while (buffer[buff_num]  != '\n' && buffer[buff_num] != EOF) 
+			pl->TeleNum [num][i++] = buffer[buff_num++];
+		
+		num++;
 		pl->Size++;
+		}
 	}
 
 	fclose(fp);
