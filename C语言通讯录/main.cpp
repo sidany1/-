@@ -38,13 +38,12 @@ int main() {
 
 	printf("请输入你要进行的操作：\n");
 	printf("-------------------------\n");
-	printf("-\t1.清空缓存区\t-\n\
+	printf("-\t1.清空\t\t-\n\
 -\t2.新建\t\t-\n\
 -\t3.删除\t\t-\n\
 -\t4.打印通讯录\t-\n\
 -\t5.查找\t\t-\n\
--\t6.同步文件\t-\n\
--\t7.退出\t\t-\n");
+-\t6.退出\t\t-\n");
 	printf("-------------------------\n");
 
 	scanf_s("%d",&OP);
@@ -153,14 +152,7 @@ int main() {
 
 
 
-
 	case 6:
-
-		PhonrListSaveAs(pl);
-		break;
-	
-
-	case 7:
 		ON_OFF = 0;
 		break;
 
@@ -172,4 +164,5 @@ int main() {
 }
 
 	} while(ON_OFF);
+	PhonrListSaveAs(pl);
 }
